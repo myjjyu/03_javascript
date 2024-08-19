@@ -37,7 +37,7 @@ console.group("4) 논리식을 사용한 조건문 (AND)");
 const x1 = true;
 const y1 = true;
 
-if (x1 && y1 ) {
+if (x1 && y1 ) { // 둘다 참이면 참
 console.log("x1 && y1 조건은 참입니다");
 }
 
@@ -46,7 +46,7 @@ console.log("x1 && y1 조건은 참입니다");
 const x2 = true;
 const y2 = false;
 
-if (x2 && y2 ) {
+if (x2 && y2 ) { 
 console.log("x1 && y1 조건은 참입니다");
 }
 
@@ -56,14 +56,14 @@ console.group("5) 논리식을 사용한 조건문 (OR)");
 const x3 = true;
 const y3 = true;
 
-if(x3 || y3){
+if(x3 || y3){ // 하나라도 참이면 참
 console.log("x3 || y3 조건은 참 입니다");
 }
 
 const x4 = true;
 const y4 = false;
 
-if(x4 || y4){
+if(x4 || y4){ 
 console.log("x4 || y4 조건은 참 입니다");
 }
 console.groupEnd();
@@ -71,14 +71,14 @@ console.groupEnd();
 
 console.group("6) NOT 연산");
 const a = true;
-if (!a) {
+if (!a) { // 부정문으로 거짓으로 바뀜\ //참이 아니다
   console.log("hello world");
 }
 
 
-const b =false;
-if (!b) {
-  console.log ("헬로월드");
+const b =false; // 거짓을말함
+if (!b) { // 부정문이기떄문에 참으로 바뀜  //거짓이 아니다
+  console.log ("헬로월드"); // 참일때 실행되기때문에 실행됨 
 }
 console.groupEnd();
 

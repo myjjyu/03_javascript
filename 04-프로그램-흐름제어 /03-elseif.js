@@ -10,5 +10,3 @@ if (point > 90) {
 } else {
   console.log("f학점");
 }
-
-
