@@ -6,7 +6,8 @@ for (let i = 2; i < 10; i++) {
 
   for (let j = 1; j < 10; j++) {
     //1~9 까지 반복
-    console.log("%d x %d = %d", i, j, i * j);
+    // console.log("%d x %d = %d", i, j, i * j);
+    console.log(`${i}x${j}=${i*j}`)
   }
   console.log(""); // 단 사이 공백으로 나눠주려고 넣음
   console.groupEnd();
