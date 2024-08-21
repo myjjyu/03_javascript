@@ -13,7 +13,7 @@ console.log(b1);
 console.log(b2);
 console.log(rest_b);
 
-//100 이하라는 하나의 원소를 갖는 한 칸으로 구성된 배열
+//100 이라는 하나의 원소를 갖는 한 칸으로 구성된 배열
 let myArr = [100];
 console.log(myArr);
 

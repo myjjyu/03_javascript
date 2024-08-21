@@ -1,4 +1,5 @@
 // 5칸으로 구성된 빈 배열 생성
+//안쓰는게 좋음!!
 const myArr =new Array(5);
 console.log(myArr);
 
@@ -6,7 +7,6 @@ console.log(myArr);
 const len = myArr.length;
 
 // 0부터 배열의 길이 (5)보다 작은 동안 반복 
-
 for (let i =0; i<len; i++){
   myArr[i] = i *10;
 

@@ -12,3 +12,15 @@ for (let i = 0; i < p; i++){
 }
 
 console.log(data);
+
+
+
+
+// 쉬운방법
+
+const data = [1, 5, 2, 4, 3];
+console.log("원본 배열:", data);
+
+// 배열 뒤집기
+data.reverse();
+console.log("뒤집힌 배열:", data);

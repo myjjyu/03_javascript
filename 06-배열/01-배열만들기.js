@@ -18,5 +18,6 @@ let myArr3 = [5];
 console.log(myArr3);
 
 //값이 존재하지 않는 5개의 빈칸을 갖는 배열 만들기
+// 안쓰는게 좋음
 let myArr4 = new Array(5);
 console.log(myArr4);
