@@ -19,3 +19,16 @@ if(max < data[i]){
 
 console.log("--------");
 console.log("최대값 = " + max) ;
+
+
+
+//최소값
+let data = [3, 7, 5, 9, 10];
+
+let min=data[0];
+for(let i = 1; i<data.length; i ++){
+  if(min > data[i]){
+   min = data[i]
+  }
+}
+console.log(min);

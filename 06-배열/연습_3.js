@@ -1,8 +1,13 @@
-
-console.group("3번문제");
+let student = [7, 5, 5, 5, 5, 10, 7];
+let before = 4500;
+let after = 5200;
 let sum = 0;
-let data = [7, 5, 5, 5,5,10,7];
 
-for()
-
-console.groupEnd();
+for (let i = 0; i < student.length; i++) {
+  if (i < 4) {
+    sum += student[i] * before;
+  } else {
+    sum += student[i] * after;
+  }
+}
+console.log(sum);

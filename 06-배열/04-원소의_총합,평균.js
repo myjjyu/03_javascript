@@ -3,7 +3,7 @@ const data = [10, 20, 30, 40, 50];
 let sum =0;
 // 배열의 모든 원소에 대한 반복문 구성
 for (let i =0; i< data.length; i++){
-  // 배열을 받을땐 [] 
+  // 배열을 받을땐 [] // i 번째 원소를 sum에 누적합산
   sum += data[i];
 }
 console.log("data의 총합: %d", sum);

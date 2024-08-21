@@ -1,4 +1,4 @@
-console.group("9번문제");
+
 let student = [
   ["둘리", 78, 89, 96],
   ["도우너", 62, 77, 67],
@@ -18,4 +18,3 @@ for (let i = 0; i < student.length; i++) {
     grade_avg
   );
 }
-console.groupEnd();

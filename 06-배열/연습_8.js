@@ -1,5 +1,3 @@
-console.group("8번문제");
-
 const arr = [5, 3, 2, 8, 9];
 
 const data = [5, 3, 2, 8, 9];
@@ -15,5 +13,3 @@ for (let i = 0; i < p; i++) {
   data[k] = tmp;
 }
 console.log(data);
-
-console.groupEnd();
