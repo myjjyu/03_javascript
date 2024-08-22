@@ -14,3 +14,5 @@ for(let i = 0; i < price.length; i++){
 }
 
 console.log("무료배송 은 %s 개", money);
+
+

@@ -19,10 +19,8 @@ for (let i = 0; i < student.length; i++) {
   // 학생의 평균 계산
   const grade_avg = grade / (student[i].length - 1);
 
-
   sum += grade;
   studentSum += grade_avg;
-
 
   console.log(
     "%s의 총점은 %d 이고 평균은 %d 입니다",
@@ -37,3 +35,32 @@ let class_avg = studentSum / student.length;
 
 console.log("모든 학생의 총점은 %d 입니다", sum);
 console.log("반 평균은 %d입니다", class_avg);
+
+////////////////////////////////////////강사풀이////////////////////////////////////////
+
+let student = ["둘리", "도우너", "또치", "희동"]; // 학생이름 배열
+let grade = [
+  // 성적표 배열
+  [78, 89, 96],
+  [62, 77, 67],
+  [54, 90, 80],
+  [100, 99, 98],
+];
+
+// 학생별 평균점수의 총 합
+let class_sum = 0;
+
+
+for (let i = 0; i < grade.length; i++) {
+  let sum = 0; 
+
+  for (let j = 0; j < grade[i].length; j++) {
+    sum += grade[i][j];
+  }
+
+  class_sum += sum / grade[i].length;
+
+  // 학생별 평균의 합 / 학생수
+  const class_avg = class_sum / student.length;
+  console.log(`반평균 : ${class_avg}점`);
+}
