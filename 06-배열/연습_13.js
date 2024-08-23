@@ -21,15 +21,13 @@ let myAarr = new Array(5);
 for (let i = 0; i < 5; i++) {
   myAarr[i] = new Array(5);
 
-  for (let i = 0; i < myAarr.length; i++) {
-    for (let j = 0; j < myAarr[i].length; j++) {
-      if (i === j) {
-        myAarr[i][j] = 1;
-      } else {
-        myAarr[i][j] = 0;
-      }
+  // 내부 루프에서 변수를 i가 아닌 j로 변경합니다.
+  for (let j = 0; j < myAarr[i].length; j++) {
+    if (i === j) {
+      myAarr[i][j] = 1;
+    } else {
+      myAarr[i][j] = 0;
     }
-    // myAarr[i][j] = i == j ? 1 : 0;
   }
 }
 
