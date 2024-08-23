@@ -9,3 +9,4 @@ function printStar(max) {
 }
 
 printStar(5);
+
