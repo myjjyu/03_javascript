@@ -2,7 +2,10 @@ function myGame(n) {
   let clapCount = 0; // 총 박수 횟수
 
   for (let i = 1; i <= n; i++) {
-    const str = i.toString(); // 숫자를 문자열로 변환
+    // const str = i.toString(); // 숫자를 문자열로 변환
+    const srt = i + "";
+
+    // 박수출력 받을 변수
     let claps = 0; // 현재 숫자에서의 박수 횟수
 
     // 문자열을 순회하면서 '3', '6', '9'가 있을 경우 박수 횟수 증가
@@ -27,3 +30,6 @@ function myGame(n) {
 
 // 예시 호출
 myGame(35);
+
+
+///////////////////////////////////////////////////////
