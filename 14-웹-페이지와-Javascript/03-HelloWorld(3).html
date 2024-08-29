@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #foo {
+        width: 300px;
+        height: 50px;
+        background-color: antiquewhite;
+        border: ;
+        color: violet;
+        text-align: center;
+        line-height: 50px;
+        transition: all 0.3 ease-in-out;
+
+        &:hover {
+          width: 300px;
+          height: 50px;
+          background-color: rgb(247, 187, 109);
+          transition: all 0.3 ease-in-out;
+          color: brown;
+          cursor: pointer;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="foo"></h1>
+    <script>
+      const foo = document.getElementById("foo");
+      foo.innerHTML = "Hello World";
+    </script>
+  </body>
+</html>
