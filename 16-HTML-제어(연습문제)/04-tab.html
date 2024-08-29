@@ -73,8 +73,31 @@
 
       <div id="paris" class="tab-page">
         <h3>Paris</h3>
-        <p>Paris is the capi</p>
+        <p>Paris is the capital of France.</p>
+      </div>
+
+      <div id="seoul" class="tab-page">
+        <h3>Seoul</h3>
+        <p>Seoul is the capital of South Korea.</p>
       </div>
     </div>
+    <script>
+      document.querySelectorAll(".tab-button").forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();  // 링크의 기본 동작 방지
+
+          // 현재 활성화된 탭과 페이지를 비활성화
+          document.querySelectorAll(".tab-button.active").forEach(btn => btn.classList.remove('active'));
+          document.querySelectorAll(".tab-page.active").forEach(page => page.classList.remove('active'));
+
+          // 클릭한 버튼을 활성화
+          button.classList.add('active');
+
+          // 해당하는 페이지를 활성화
+          const href = button.getAttribute("href");
+          document.querySelector(href).classList.add('active');
+        });
+      });
+    </script>
   </body>
 </html>
