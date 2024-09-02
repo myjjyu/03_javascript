@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="find-me" type="button">show my location</button>
+    <br />
+    <p id="status"></p>
+    <!-- 'starus' 를 'status' 로 수정 -->
+    <a id="map-link" target="_blank"></a>
+
+    <script>
+      const status = document.querySelector("#status"); // 'starus' 를 'status' 로 수정
+      const mapLink = document.querySelector("#map-link");
+
+      document.querySelector("#find-me").addEventListener("click", (e) => {
+        // 콤마(,)가 누락된 부분 수정
+        mapLink.setAttribute("href", "#");
+        mapLink.innerHTML = "";
+      });
+
+      const options = {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: 3000,
+      };
+
+      function success(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        status.innerHTML = "";
+
+        mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`; // 'https:' 추가
+        mapLink.innerHTML = `위도: ${latitude}, 경도: ${longitude}`;
+      }
+
+      function error(e) {
+        status.innerHTML = "위치 정보 획득에 실패";
+        console.error(e);
+      }
+
+      if (!navigator.geolocation) {
+        status.innerHTML = "현재 브라우저가 위치 정보 기능을 제공하지 않습니다";
+      } else {
+        status.innerHTML = "검색중";
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
+      }
+    </script>
+  </body>
+</html>
