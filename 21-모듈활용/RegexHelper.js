@@ -1,25 +1,32 @@
 class StringFormatException extends Error {
   #selector;
+//StringFormatException 클래스를 Error 클래스로부터 상속받아 정의합니다.
+//#selector는 private 필드로, 이 클래스에서만 접근 가능한 selector를 저장합니다.
 
   constructor(msg = "잘못된 요청 입니다.", selector = undefined) {
     super(msg);
     super.name = "StringFormatException";
     this.#selector = selector;
   }
+//생성자 함수입니다. msg와 selector를 인수로 받아서 StringFormatException 객체를 초기화합니다. 
+//msg는 예외 메시지, selector는 선택자를 저장합니다. s
+//uper(msg)로 부모 클래스의 생성자를 호출하고, super.name을 설정하여 예외의 이름을 정의합니다.
+  
 
-  get selector() {
+get selector() {
     return this.#selector; 
-  }
+  } //selector에 대한 getter 메소드입니다. #selector 값을 반환합니다.
 
   get element() {
     const el = this.#selector !== null ? document.querySelector(this.#selector) : undefined;
     return el;
   }
-}
+}//element는 #selector가 null이 아닌 경우 해당 선택자를 사용하여 DOM 요소를 찾습니다. 요소가 없으면 undefined를 반환합니다.
 
-class RegexHelper {
+class RegexHelper { //RegexHelper 클래스를 정의합니다.
   value(selector, msg) {
     const content = document.querySelector(selector).value;
+//value 메소드입니다. selector로 선택된 요소의 값을 가져옵니다.
 
     if (
       content === undefined ||
@@ -27,10 +34,10 @@ class RegexHelper {
       (typeof content === "string" && content.trim().length === 0)
     ) {
       throw new StringFormatException(msg, selector); 
-    }
+    } //content가 undefined, null이거나 빈 문자열인 경우 StringFormatException을 던집니다.
 
     return true;
-  }
+  }//값이 유효할 경우 true를 반환합니다.
 
   maxLength(selector, len, msg) {
     this.value(selector, msg);
