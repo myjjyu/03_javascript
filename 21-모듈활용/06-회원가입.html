@@ -51,7 +51,6 @@
         margin: 20px auto;
         text-align: center;
       }
-
     </style>
   </head>
   <body>
@@ -206,25 +205,92 @@
     <script>
       document.querySelector("#join_form").addEventListener("submit", (e) => {
         e.preventDefault(); // 전송잠금
+        //폼이 제출될 때(submit), 특정 작업을 하도록 이벤트를 걸어놨어요. e.preventDefault()는 기본적으로 폼이 제출되는 동작을 막아줘요.
 
-        try{
+        try {
           // 아이디검사
-          regexHelper.value("#user_id","아이디를 입력하세요");
-          regexHelper.value("#user_pw","비밀번호를 입력하세요");
-          regexHelper.value("#user_pw_re","비밀번호 확인값을 입력하세요");
-          regexHelper.value("#user_name","이름을 입력하세요");
-          regexHelper.value("#email","이메일을 입력하세요");
-          regexHelper.value("#tel","연락처를 입력하세요");
+          regexHelper.value("#user_id", "아이디를 입력하세요");
+          regexHelper.minLength(
+            "#user_id",
+            4,
+            "아이디는 최소 4글자 이상 입력가능합니다"
+          );
+          regexHelper.maxLength(
+            "#user_id",
+            20,
+            "아이디는 최대 20글자까지만 입력가능합니다"
+          );
+          regexHelper.engNum("#user_id", "아이디는 영어+숫자로만 입력하세요");
 
-        } catch(e){
+          // 비밀번호 검사
+          regexHelper.value("#user_pw", "비밀번호를 입력하세요");
+          regexHelper.minLength(
+            "#user_pw",
+            4,
+            "비밀번호는 최소 4글자 이상 입력가능합니다"
+          );
+          regexHelper.maxLength(
+            "#user_pw",
+            20,
+            "비밀번호는 최대 20글자까지만 입력가능합니다"
+          );
+
+          // 비밀번호 확인 검사
+          regexHelper.value("#user_pw_re", "비밀번호 확인값을 입력하세요");
+          regexHelper.compareTo(
+            "#user_pw",
+            "#user_pw_re",
+            "비밀번호 확인이 잘못되었습니다"
+          );
+
+          // 이름 검사
+          regexHelper.value("#user_name", "이름을 입력하세요");
+          regexHelper.minLength(
+            "#user_name",
+            2,
+            "이름은 최소 2글자 이상 입력가능합니다"
+          );
+          regexHelper.maxLength(
+            "#user_name",
+            10,
+            "이름은 최대 10글자까지만 입력가능합니다"
+          );
+          regexHelper.kor("#user_name", "이름은 한글로만 입력가능합니다");
+
+          // 이메일 검사
+          regexHelper.value("#email", "이메일을 입력하세요");
+          regexHelper.email("#email", "이메일 형식이 잘못되었습니다");
+
+          // 연락처 검사
+          regexHelper.value("#tel", "연락처를 입력하세요");
+          regexHelper.phone("#tel", "연락처 형식이 잘못되었습니다");
+
+          // 성별 검사
+          regexHelper.check('input[name="gender"]', "성별을 선택하세요");
+
+          // 수강과목 검사
+          regexHelper.check('input[name="subject"]', "수강과목을 선택하세요");
+          regexHelper.checkmin(
+            'input[name="subject"]',
+            2,
+            "최소 2개의 과목을 선택하세요"
+          );
+          regexHelper.checkmax(
+            'input[name="subject"]',
+            4,
+            "최대 4개의 과목을 선택하세요"
+          );
+        } catch (e) {
           alert(e.message);
           console.error(e);
           e.element.value = "";
           e.element.focus();
           return;
         }
+
         //처리 완료
-        alert("입력형식 검사 완료!!!")
+        alert("입력형식 검사 완료!!!");
+        //모든 입력값이 올바르면 "입력형식 검사 완료!!!"라는 메시지를 띄워요. 즉, 폼을 제출하기 전에 입력값이 잘못된 게 없는지 검사한 다음, 문제가 없으면 이 메시지를 보여주는 거예요.
       });
     </script>
   </body>

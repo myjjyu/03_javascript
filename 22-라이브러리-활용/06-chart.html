@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .subplot {
+        width: 50%;
+        padding: 10px;
+      }
+
+      .subplot-item {
+        width: 100%;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>chart.js</h1>
+    <p><a href="https://www.chartjs.org/">https://www.chartjs.org/</a></p>
+    <hr />
+    <div class="container">
+      <div class="subplot">
+        <h2>선그래프</h2>
+        <div class="subplot-item">
+          <canvas id="mychart1"></canvas>
+        </div>
+      </div>
+
+      <div class="subplot">
+        <h2>기본 막대 그래프</h2>
+        <div class="subplot-item">
+          <canvas id="mychart2"></canvas>
+        </div>
+      </div>
+
+      <div class="subplot">
+        <h2>다중 막대 그래프</h2>
+        <div class="subplot-item">
+          <canvas id="mychart3"></canvas>
+        </div>
+      </div>
+
+      <div class="subplot">
+        <h2>파이 그래프</h2>
+        <div class="subplot-item">
+          <canvas id="mychart4"></canvas>
+        </div>
+      </div>
+
+      <div class="subplot">
+        <h2>Polar Area Chart</h2>
+        <div class="subplot-item">
+          <canvas id="mychart5"></canvas>
+        </div>
+      </div>
+
+      <div class="subplot">
+        <h2>도넛 그래프</h2>
+        <div class="subplot-item">
+          <canvas id="mychart6"></canvas>
+        </div>
+      </div>
+
+      <div class="subplot">
+        <h2>산점도 그래프</h2>
+        <div class="subplot-item">
+          <canvas id="mychart7"></canvas>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+
+    <script>
+      const names = ["철수", "영희", "민수", "수현", "호영"];
+      const kor = [98, 88, 92, 63, 71];
+      const eng = [82, 90, 70, 60, 60];
+      const math = [88, 62, 71, 31, 64];
+
+      const mychart1 = document.getElementById("mychart1");
+      const mychart2 = document.getElementById("mychart2");
+      const mychart3 = document.getElementById("mychart3");
+      const mychart4 = document.getElementById("mychart4");
+      const mychart5 = document.getElementById("mychart5");
+      const mychart6 = document.getElementById("mychart6");
+      const mychart7 = document.getElementById("mychart7");
+
+      new Chart(mychart1, {
+        type: "line",
+        data: {
+          labels: names,
+          datasets: [
+            {
+              label: "국어",
+              data: kor,
+              borderWidth: 1,
+              borderColor: "#ff6600",
+            },
+
+            {
+              label: "영어",
+              data: eng,
+              borderWidth: 1,
+              borderColor: "#ff00ff",
+            },
+          ],
+        },
+        options: {
+          maintainAspectRatio: false,
+        },
+      });
+
+      new Chart(mychart2, {
+        type: "bar",
+        data: {
+          labels: names,
+          datasets: [
+            {
+              label: "국어",
+              data: kor,
+              borderWidth: 0.5,
+              borderColor: [
+                "rgba(255,99,132,1)",
+                "rgba(54,162,235,1)",
+                "rgba(255,206,132,1)",
+                "rgba(255,90,132,1)",
+                "rgba(255,99,12,1)",
+              ],
+              backgroundColor: [
+                "rgba(255,99,132,1)",
+                "rgba(54,162,235,1)",
+                "rgba(255,206,132,1)",
+                "rgba(255,90,132,1)",
+                "rgba(255,99,12,1)",
+              ],
+            },
+          ],
+        },
+        options: {
+          maintainAspectRatio: false, // 내가 설정한 크기에 맞춰서 그래프 가 꽉찬다
+          indexAxis: "y", // x축 y 축 결정
+        },
+      });
+
+      new Chart(mychart3, {
+        type: "bar",
+        data: {
+          labels: names,
+          datasets: [
+            {
+              label: "국어",
+              data: kor,
+              borderWidth: 0.5,
+              borderColor: "rgba(255,99,132,1)",
+              backgroundColor: "rgba(255,99,132,1)",
+            },
+
+            {
+              label: "영어",
+              data: eng,
+              borderWidth: 0.5,
+              borderColor: "rgba(54,162,235,1)",
+              backgroundColor: "rgba(54,162,235,1)",
+            },
+          ],
+        },
+        options: {
+          maintainAspectRatio: false,
+        },
+      });
+
+      new Chart(mychart4, {
+        type: "pie",
+        data: {
+          labels: names,
+          datasets: [
+            {
+              label: "국어",
+              data: kor,
+              borderWidth: 0.5,
+              borderColor: [
+                "rgba(255,99,132,1)",
+                "rgba(54,162,235,1)",
+                "rgba(255,206,132,1)",
+                "rgba(255,90,132,1)",
+                "rgba(255,99,12,1)",
+              ],
+              backgroundColor: [
+                "rgba(255,99,132,1)",
+                "rgba(54,162,235,1)",
+                "rgba(255,206,132,1)",
+                "rgba(255,90,132,1)",
+                "rgba(255,99,12,1)",
+              ],
+            },
+          ],
+        },
+        options: {
+          maintainAspectRatio: false,
+
+          plugins: {
+            legend: {
+              position: "left",
+            },
+            title: {
+              display: true,
+              text: "학생별 점수 비율",
+            },
+          },
+        },
+      });
+
+
+      new Chart(mychart5, {
+        type: "polarArea",
+        data: {
+          labels: names,
+          datasets: [
+            {
+              label: "국어",
+              data: kor,
+              borderWidth: 0.5,
+              borderColor: [
+                "rgba(255,99,132,1)",
+                "rgba(54,162,235,1)",
+                "rgba(255,206,132,1)",
+                "rgba(255,90,132,1)",
+                "rgba(255,99,12,1)",
+              ],
+              backgroundColor: [
+                "rgba(255,99,132,1)",
+                "rgba(54,162,235,1)",
+                "rgba(255,206,132,1)",
+                "rgba(255,90,132,1)",
+                "rgba(255,99,12,1)",
+              ],
+            },
+          ],
+        },
+        options: {
+          maintainAspectRatio: false,
+
+          plugins: {
+            legend: {
+              position: "left",
+            },
+            title: {
+              display: true,
+              text: "학생별 점수 비율",
+            },
+          },
+        },
+      });
+
+
+      new Chart(mychart6, {
+        type: "doughnut",
+        data: {
+          labels: names,
+          datasets: [
+            {
+              data: kor,
+              borderWidth: 0.5,
+              borderColor: [
+                "rgba(255,99,132,1)",
+                "rgba(54,162,235,1)",
+                "rgba(255,206,132,1)",
+                "rgba(255,90,132,1)",
+                "rgba(255,99,12,1)",
+              ],
+              backgroundColor: [
+                "rgba(255,99,132,1)",
+                "rgba(54,162,235,1)",
+                "rgba(255,206,132,1)",
+                "rgba(255,90,132,1)",
+                "rgba(255,99,12,1)",
+              ],
+            },
+          ],
+        },
+        options: {
+          maintainAspectRatio: false,
+
+          plugins: {
+            legend: {
+              position: "left",
+            },
+            title: {
+              display: true,
+              text: "학생별 점수 비율",
+            },
+          },
+        },
+      });
+
+      new Chart(mychart7, {
+        type: "scatter",
+        data: {
+          labels: kor,
+          datasets: [
+            {
+              label: "국어점수에 따른 영어 점수",
+              data: eng,
+              borderWidth: 0.5,
+              borderColor: [
+                "rgba(255,99,132,1)",
+              ],
+              backgroundColor: [
+                "rgba(255,99,132,1)",
+              ],
+            },
+          ],
+        },
+        options: {
+          maintainAspectRatio: false,
+        },
+      });
+
+      
+
+
+      
+    </script>
+  </body>
+</html>

@@ -12,14 +12,14 @@ class UtilHelper{
 
 /**
  * 쿠키에 저장된 값을 반환한다 . 값이 없을 경우 undefiend를 반환한다
- * @param {string} name - 쿠키의 이름
+ * @param {string} name - 쿠키의 이름  
  * @returns  쿠키값
  */
 getCookie(name){
   const regex = new RegExp(
     "(?:^|; )" +
       name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-      "=([^;]*)"
+      "=([^;]*)"  // 정규표현식
   );
   let matches = document.cookie.match(regex);
 
@@ -40,7 +40,7 @@ setCookie(name, value, maxAge) { // 저장할 이름 , 값, 유효시간
   const encValue = encodeURIComponent(value);
   let updatedCookie = `${encName}=${encValue};`;
 
-  updatedCookie += "path=/;";
+  updatedCookie += "path=/;"; 
 
   if (maxAge !== undefined) {
     updatedCookie += `max-age=${maxAge}`;
