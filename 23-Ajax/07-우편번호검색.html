@@ -43,58 +43,65 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        document.querySelector("#btn").addEventListener("click",async (e)=>{
-          loading.classList.add("active");
+      document.querySelector("#btn").addEventListener("click", async (e) => {
+        const loading = document.querySelector("#loading ");
+        loading.classList.add("active");
 
-          const userInput = document.querySelector("#keyword").value.trim();
+        const userInput = document.querySelector("#keyword").value.trim();
 
-          if(!userInput){
-            alert("검색어를 입력해 주세요");
-            document.querySelector("#keyword").focus();
-            return;
-          }
+        if (!userInput) {
+          alert("검색어를 입력해 주세요");
+          document.querySelector("#keyword").focus();
+          return;
+        }
 
-          // 요청할 openAPI 의 주소
-          const url = "https://business.juso.go.kr/addrlink/addrLinkApi.do";
-        
+        // 요청할 openAPI 의 주소
+        const url = "https://business.juso.go.kr/addrlink/addrLinkApi.do";
 
-      let response = null;
+        let response = null;
 
-      try {
-                response = await axios.get(url, {
-                  params: {
-                    confmKey: "devU01TX0FVVEgyMDI0MDkwNTE3NTAyMzExNTA2Njg=",
-                    currentPage: 1,
-                    countPerPage : 50,
-                    keyword: userInput,
-                    resultType : "json",
-                  },
-                });
-                console.log(response.data);
-             }catch (error){
-              console.error(`[Error Code] ${error.code}`);
-              console.error(`[Error Message] ${error.message}`);
-              let alertMsg =error.message;
+        try {
+          response = await axios.get(url, {
+            params: {
+              confmKey: "devU01TX0FVVEgyMDI0MDkwNTE3NTAyMzExNTA2Njg=",
+              currentPage: 1,
+              countPerPage: 50,
+              keyword: userInput,
+              resultType: "json",
+            },
+          });
 
-              if (error.response !== undefined) {
+          // 응답 데이터 확인
+          console.log(response.data); // 응답 데이터 전체 확인
+        } catch (error) {
+          console.error(`[Error Code] ${error.code}`);
+          console.error(`[Error Message] ${error.message}`);
+          let alertMsg = error.message;
+
+          if (error.response !== undefined) {
             const errorMsg = `${error.response.status} error - ${error.response.statusText}`;
             console.error(`[HTTP Status] ${errorMsg}`);
             alertMsg += `\n${errorMsg}`;
           }
           alert(alertMsg);
+          loading.classList.remove("active");
           return;
         } finally {
-          loading.classList.remove("active");
+          loading.classList.remove("#active");
         }
 
         const listBody = document.querySelector("#list-body");
         listBody.innerHTML = ""; // 새로운 빈 데이터 공간 생성
 
-        response.data.results.juso.forEach((v,i)=>{
+        // juso 데이터가 있을 경우에만 forEach 실행
+        response.data.results.juso.forEach((v, i) => {
           const tr = document.createElement("tr");
 
           const td1 = document.createElement("td");
-          td1.innerHTML = v.roadAddr;
+          td1.innerHTML = v.zipNo;
+
+          const td2 = document.createElement("td");
+          td2.innerHTML = v.roadAddr;
 
           const td3 = document.createElement("td");
           td3.innerHTML = v.jibunAddr;
@@ -105,7 +112,7 @@
 
           listBody.appendChild(tr);
         });
-        });
+      });
     </script>
   </body>
 </html>
