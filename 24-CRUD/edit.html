@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>학과관리 ::: MySchool</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+
+      .container {
+        padding: 20px 0;
+        width: 640px;
+        margin: auto;
+      }
+
+      header h1 {
+        color: #0066ff;
+        font-size: 28px;
+      }
+
+      footer {
+        text-align: center; /* 중앙 정렬 */
+        padding: 10px 0; /* 상하 패딩 추가 */
+      }
+
+      footer address {
+        display: block;
+        font-size: 12px;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>학과관리</h1>
+        <hr />
+      </header>
+
+      <section>
+        <!-- 데이터 추가 페이지로 이동하기 위한 링크 -->
+        <form name="form" id="department-form">
+          <input type="hidden" name="id" id="id" />
+
+          <div class="form-group">
+            <label for="dname">학과이름 <span class="text-danger">*</span></label>
+            <div>
+              <input type="text" name="dname" id="dname" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="loc">학과위치 <span class="text-danger">*</span></label>
+            <div>
+              <input type="text" name="loc" id="loc" />
+            </div>
+          </div>
+          <hr />
+
+          <div class="text-center">
+            <button type="submit">수정하기</button>
+            <button type="reset">다시작성</button>
+          </div>
+        </form>
+      </section>
+    </div>
+    <footer>
+      <hr />
+      <address>copyright&copy;2024. megastudy</address>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./UtilHelper.js"></script>
+    <script>
+      (async () => {
+        const params = utilHelper.getQuery();
+
+        if (!params.id) {
+          alert("학과 번호가 없습니다");
+          history.back();
+          return;
+        }
+
+        // 기존에 저장되어 있는 내용을 폼 안에 셋팅하기 위해 Ajax로 데이터를 가져온다
+        let response = null;
+        try {
+          response = await axios.get(`http://localhost:3001/department/${params.id}`);
+          console.log(response.data);
+        } catch (e) {
+          console.error(e);
+          alert("요청을 처리하는데 실패했습니다");
+          return;
+        }
+
+        document.querySelector('#id').value = response.data.id;
+        document.querySelector('#dname').value = response.data.dname;
+        document.querySelector('#loc').value = response.data.loc;
+      })();
+
+      document.querySelector('#department-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const id = document.querySelector('#id').value;
+        const dname = document.querySelector('#dname').value;
+        const loc = document.querySelector('#loc').value;
+
+        try {
+          await axios.put(`http://localhost:3001/department/${id}/`, {
+            dname: dname,
+            loc: loc,
+          });
+          window.location = `view.html?id=${id}`;
+        } catch (e) {
+          console.error(e);
+          alert('요청을 처리하는데 실패했습니다');
+          return;
+        }
+      });
+    </script>
+  </body>
+</html>
+
